@@ -30,12 +30,10 @@ def oneVsAll(X, y, num_labels, lambda_):
     #       whether the ground truth is true/false for this class.
     #
     # Note: For the python version of this assignment, we recommend using
-    #       scipy.optimize.minimize with the Newton-CG method.
+    #       scipy.optimize.minimize with the CG method (fmin_cg).
     #       It is okay to use a for-loop (for c in range(1,num_labels+1)) to
     #       loop over the different classes.
     #
-    #       fmincg (used in the Octave version of this assignment) has not yet
-    #       been ported to python/numpy.
     #
     # Example Code for minimize:
     #
@@ -46,7 +44,7 @@ def oneVsAll(X, y, num_labels, lambda_):
     #     # This function will return a Result object. Theta can be retrieved in
     #     # the 'x' attribute and the cost in the 'fun' attribute.
     #     res = optimize.minimize(lrCostFunction, initial_theta, args=(X,(y == c),lambda_), \
-    #                             method='Newton-CG', jac=True, options={'maxiter':10})
+    #                             method='CG', jac=True, options={'maxiter':50})
     #     theta, cost = res.x, res.fun
 
 
