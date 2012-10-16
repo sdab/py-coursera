@@ -43,8 +43,7 @@ y = ex3data1['y'].ravel()
 m = size(X, 0)
 
 # Randomly select 100 data points to display
-sel = range(m)
-random.shuffle(sel)
+sel = random.permutation(m)
 
 fig = figure()
 displayData(X[sel[:100], :])
