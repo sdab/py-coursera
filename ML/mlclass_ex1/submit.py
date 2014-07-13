@@ -43,11 +43,11 @@ srcs = [
     ]
 
 def output(part_id, auxstring):
-    X1 = column_stack((ones(20), exp(1) + exp(2) * linspace(0.1, 20., 20)))
+    X1 = column_stack((ones(20), exp(1) + exp(2) * linspace(0.1, 2,20)))
     Y1 = X1[:,1] + sin(X1[:,0]) + cos(X1[:,1])
     X2 = column_stack((X1, X1[:,1]**0.5, X1[:,1]**0.25))
     Y2 = power(Y1, 0.5) + Y1
-
+        
     fname = srcs[part_id-1].rsplit('.',1)[0]
     mod = __import__(fname, fromlist=[fname], level=1)
     func = getattr(mod, fname)
@@ -99,8 +99,9 @@ def submit(part_id=None):
             # Some error occured, error string in first return element.
             print '\n!! Error: %s\n' % login
             return
-
+        
         ch_resp = challenge_response(login, password, ch)
+        
         result, s = submit_solution(login, ch_resp, part_id, output(part_id, auxstring), source(part_id), signature)
         print '\n== [ml-class] Submitted Homework %s - Part %d - %s' % (
                 homework_id, part_id, part_names[part_id-1])
@@ -187,3 +188,5 @@ def submit_solution(email, ch_resp, part, output, source, signature):
         return 0, f.read()
     finally:
         f.close()
+
+submit()
